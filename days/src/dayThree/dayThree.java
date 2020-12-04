@@ -1,16 +1,36 @@
 package dayThree;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 import reader.Reader;
 
 public class dayThree {
 
   public static void main(String[] args) {
     Counter counter = new Counter();
-    System.out.println(Reader.readInput("/resources/inputD3.txt")
+    int[][] slopesArray = {{1,1}, {3,1}, {5,1}, {7,1}, {1,1}};
+    Stream<String> stream = Reader.readInput("/resources/inputD3.txt", dayThree.class);
+    System.out.println((int) stream
         .map(line -> line.split(""))
-        .filter(line -> line[counter.getAndIncrement(3, line.length)].equals("."))
-        .count());
-
+        .filter(line -> line[counter.getAndIncrement(3, line.length)].equals("#")).count());
+    Arrays.asList(slopesArray).parallelStream()
+        .forEach(slope -> IntStream
+            .range(0, (int)Reader.readInput("/resources/inputD3.txt", dayThree.class).count())
+            .filter(i -> i % slope[1] == 0)
+            .mapToObj(i -> Reader.readInput("/resources/inputD3.txt", dayThree.class).toArray(String[]::new)[i])
+            .forEach(streamSlopes -> System.out.println((int) streamSlopes.lines()
+                .map(line -> line.split(""))
+                .filter(line -> line[counter.getAndIncrement(slope[0], line.length)].equals("#"))
+                .count())));
   }
 }
 
@@ -26,7 +46,8 @@ class Counter{
   }
 
   public int getAndIncrement(int value, int mod) {
-    count = getAndIncrement(value) % mod;
-    return count;
+    int countGet = count;
+    count = (count + value) % mod;
+    return countGet;
   }
 }

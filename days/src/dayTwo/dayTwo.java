@@ -8,7 +8,7 @@ public class dayTwo {
   // regex 1: [^$char]*($char[^$char]*){$min,$max}
   //regex 2:
   public static void main(String[] args) {
-    System.out.println(Reader.readInput("/resources/inputD2.txt")
+    System.out.println(Reader.readInput("/resources/inputD2.txt", dayTwo.class)
         .map(line -> line.split(" "))
         .filter(line -> line[2]
             .matches(

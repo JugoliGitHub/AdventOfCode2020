@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class mainClass {
+public class dayOne {
 
   public static void main(String[] args) {
     long start = System.nanoTime();
@@ -25,7 +25,7 @@ public class mainClass {
   }
 
   public static List<Integer> readInput() {
-    InputStream stream = mainClass.class.getResourceAsStream("/resources/input.txt");
+    InputStream stream = dayOne.class.getResourceAsStream("/resources/input.txt");
     BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
     return reader.lines().map(Integer::parseInt).collect(Collectors.toList());
   }
