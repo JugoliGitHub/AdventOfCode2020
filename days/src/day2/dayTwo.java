@@ -1,6 +1,5 @@
-package dayTwo;
+package day2;
 
-import java.util.regex.Pattern;
 import reader.Reader;
 
 public class dayTwo {
