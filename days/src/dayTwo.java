@@ -1,5 +1,3 @@
-package day2;
-
 import reader.Reader;
 
 public class dayTwo {
