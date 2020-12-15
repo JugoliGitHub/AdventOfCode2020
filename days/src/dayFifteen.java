@@ -37,18 +37,16 @@ public class dayFifteen {
     int lastTurn = history.size();
     int currentNum = 0;
     Integer lastNum = startNumbers.get(startNumbers.size() - 1);
-    while (lastTurn + 1 < turnOut) {
+    do {
+      lastTurn++;
       if (!history.containsKey(lastNum)) {
         currentNum = 0;
       } else {
-        currentNum = lastTurn + 1 - history.get(lastNum);
+        currentNum = lastTurn - history.get(lastNum);
       }
-      // System.out.println("Turn " + lastTurn + ": Last Number was: " + lastNum + " added: " + history.get(history.size()-1));
-      history.put(lastNum, lastTurn+1);
+      history.put(lastNum, lastTurn);
       lastNum = currentNum;
-      lastTurn++;
-
-    }
+    } while (lastTurn < turnOut - 1);
     return lastNum;
   }
 
